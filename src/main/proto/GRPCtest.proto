@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+package com.etf.grpc.test;
+
+message StringValue {
+  string value = 1;
+}
+
+message SimpleModel {
+    double id = 1;
+    string name = 2;
+    string description = 3;
+    bool active = 4;
+    double amount = 5;
+}
+
+message ComplexModel {
+    repeated double numbers = 1;
+    repeated string strings = 2;
+}
+
+message EmptyValue {
+}
+
+service GRPCService {
+  rpc test (EmptyValue) returns (EmptyValue);
+
+  rpc getString (EmptyValue) returns (StringValue);
+
+  rpc getSimpleObject (EmptyValue) returns (SimpleModel);
+
+  rpc getComplexObject (EmptyValue) returns (ComplexModel);
+}
